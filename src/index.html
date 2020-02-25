@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bin2dec</title>
+</head>
+<body>
+	<div class='app'>
+		<!-- Input para binário -->
+		<div class='input-container'>
+			<label for="bin">Your Binary</label>
+			<input type="text"  id='bin' maxlength='8'/>
+
+			<button id='result'>Result</button>
+		</div>
+
+		<!-- output para decimal -->
+		<div class='output-container'>
+			<span>Your Decimal: </span>
+			<div id='output'></div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	//Selectors
+	let bin = document.querySelector('#bin')
+	let resultBtn = document.querySelector('#result')
+	let outputContainer = document.querySelector('.output-container')
+	let output = document.querySelector('#output')
+
+	// Appends:
+	outputContainer.appendChild(output)
+
+	resultBtn.onclick = () => {
+		output.innerHTML = ''
+		let text = document.createTextNode(binToDec(bin.value))
+		output.appendChild(text)
+	}
+
+	// Binary to Decimal function:
+	function binToDec(param) {
+		let input = param
+		let result = 0
+
+		for(let i=0; i<input.length; i++) {
+			//paga um digito:
+			let currentBinDigit = parseInt(input.substring(i, i+1), 2)
+
+			//Faz a Potencia para cada digito
+			let currentPow = Math.pow(2, input.length - i - 1)
+
+			// digito binário * potencia
+			result += currentBinDigit * currentPow
+		}
+		return result
+	}
+</script>
+
+</html>
