@@ -1,5 +1,4 @@
-**From App Ideas Collection**
-[link](https://github.com/florinpop17/app-ideas)
+[**From App Ideas Collection**](https://github.com/florinpop17/app-ideas)
 
 # Bin2Dec
 
