@@ -2,6 +2,15 @@
 <html>
 <head>
 	<title>bin2dec</title>
+	<!-- <style>
+		#output {
+			font-size: 18pt;
+			font-weight: bold;
+			width: 150px;
+			height: 50px;
+			text-align: center;
+		}
+	</style> -->
 </head>
 <body>
 	<div class='app'>
@@ -33,9 +42,21 @@
 	outputContainer.appendChild(output)
 
 	resultBtn.onclick = () => {
-		output.innerHTML = ''
-		let text = document.createTextNode(binToDec(bin.value))
-		output.appendChild(text)
+		if(!isBin(bin.value)){
+			alert("Digite um numero binário!!")
+
+			output.innerHTML = ''
+			let text = document.createTextNode('Entrada não binária!!')
+			output.appendChild(text)
+		} else {
+			output.innerHTML = ''
+			let text = document.createTextNode(binToDec(bin.value))
+			output.appendChild(text)
+		}
+	}
+
+	bin.onchange = () => {
+		
 	}
 
 	// Binary to Decimal function:
@@ -45,15 +66,29 @@
 
 		for(let i=0; i<input.length; i++) {
 			//paga um digito:
-			let currentBinDigit = parseInt(input.substring(i, i+1), 2)
+			let currentBit = parseInt(input.substring(i, i+1), 2)
 
 			//Faz a Potencia para cada digito
 			let currentPow = Math.pow(2, input.length - i - 1)
 
 			// digito binário * potencia
-			result += currentBinDigit * currentPow
+			result += currentBit * currentPow
 		}
 		return result
+	}
+
+	//Se tem somente 0's 1's.
+	function isBin(strParam) {
+		let strInput = strParam
+
+		for(let i=0; i < strInput.length; i++) {
+			let intCurrentBit = parseInt(strInput.substring(i, i+1), 2)
+			if(intCurrentBit != 0 && intCurrentBit != 1) {
+				return false
+			}
+		}
+
+		return true
 	}
 </script>
 
